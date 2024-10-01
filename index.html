@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Formulário de Cadastro</title>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" alt="UNISUAM Logo" class="logo">
+    </div>
+    <div class="container">
+        <h1>Formulário de Cadastro</h1>
+
+        
+        <!-- Seção de Informações Pessoais -->
+        <section class="section personal-info">
+            <h2>Informações Pessoais</h2>
+            <form id="registration-form">
+                <label for="first-name">Nome:</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="last-name">Sobrenome:</label>
+                <input type="text" id="last-name" name="last-name" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirmação de Senha:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+        </section>
+        
+        <!-- Seção de Contato -->
+        <section class="section contact-info">
+            <h2>Informações de Contato</h2>
+                <label for="phone">Telefone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="address">Endereço:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="city">Cidade:</label>
+                <input type="text" id="city" name="city" required>
+
+                <label for="state">Estado:</label>
+                <input type="text" id="state" name="state" required>
+
+                <label for="zip">CEP:</label>
+                <input type="text" id="zip" name="zip" required>
+        </section>
+
+        <!-- Seção de Interesses Acadêmicos -->
+        <section class="section academic-interests">
+            <h2>Interesses Acadêmicos</h2>
+                <label>Cursos de Interesse:</label><br>
+                <input type="checkbox" id="curso1" name="course" value="Curso 1">
+                <label for="curso1">Curso 1</label><br>
+                
+                <input type="checkbox" id="curso2" name="course" value="Curso 2">
+                <label for="curso2">Curso 2</label><br>
+                
+                <input type="checkbox" id="curso3" name="course" value="Curso 3">
+                <label for="curso3">Curso 3</label><br>
+
+                <label for="semester">Semestre de Ingresso:</label>
+                <select id="semester" name="semester">
+                    <option value="1">1º Semestre</option>
+                    <option value="2">2º Semestre</option>
+                </select>
+        </section>
+
+        <!-- Seção de Experiência Profissional -->
+        <section class="section professional-experience">
+            <h2>Experiência Profissional</h2>
+                <label for="company">Empresa:</label>
+                <input type="text" id="company" name="company">
+
+                <label for="position">Cargo:</label>
+                <input type="text" id="position" name="position">
+
+                <label for="start-date">Data de Início:</label>
+                <input type="date" id="start-date" name="start-date">
+
+                <label for="end-date">Data de Término:</label>
+                <input type="date" id="end-date" name="end-date">
+        </section>
+
+        <!-- Seção de Comentários ou Observações -->
+        <section class="section comments">
+            <h2>Comentários ou Observações</h2>
+            <textarea id="comments" name="comments" rows="5" placeholder="Insira seus comentários aqui"></textarea>
+        </section>
+
+        <!-- Botões de Envio e Reset -->
+        <div class="buttons">
+            <button type="submit">Enviar</button>
+            <button type="reset">Resetar</button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
