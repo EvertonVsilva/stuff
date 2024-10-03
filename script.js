@@ -1,14 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("registration-form");
 
+    const firstName = document.getElementById("first-name");
+    const lastName = document.getElementById("last-name");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm-password");
+    const phone = document.getElementById("phone");
+    const zip = document.getElementById("zip");
+
+    firstName.addEventListener("input", () => validateField(firstName, "O campo Nome é obrigatório."));
+    lastName.addEventListener("input", () => validateField(lastName, "O campo Sobrenome é obrigatório."));
+    email.addEventListener("input", () => validateEmailField(email));
+    password.addEventListener("input", () => validatePasswordField(password));
+    confirmPassword.addEventListener("input", () => validateConfirmPasswordField(confirmPassword, password));
+    phone.addEventListener("input", () => validatePhoneField(phone));
+    zip.addEventListener("input", () => validateZipField(zip));
+
     form.addEventListener("submit", function (event) {
-        // Limpar mensagens de erro
         clearErrors();
-
-        // Realizar validação
         let isValid = validateForm();
-
-        // Se o formulário não for válido, impedir o envio
         if (!isValid) {
             event.preventDefault();
         }
@@ -16,67 +27,101 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function validateForm() {
         let isValid = true;
+        isValid = validateField(firstName, "O campo Nome é obrigatório.") && isValid;
+        isValid = validateField(lastName, "O campo Sobrenome é obrigatório.") && isValid;
+        isValid = validateEmailField(email) && isValid;
+        isValid = validatePasswordField(password) && isValid;
+        isValid = validateConfirmPasswordField(confirmPassword, password) && isValid;
+        isValid = validatePhoneField(phone) && isValid;
+        isValid = validateZipField(zip) && isValid;
 
-        // Validação do Nome
-        const firstName = document.getElementById("first-name");
-        if (firstName.value.trim() === "") {
-            showError(firstName, "O campo Nome é obrigatório.");
-            isValid = false;
-        }
-
-        // Validação do Sobrenome
-        const lastName = document.getElementById("last-name");
-        if (lastName.value.trim() === "") {
-            showError(lastName, "O campo Sobrenome é obrigatório.");
-            isValid = false;
-        }
-
-        // Validação do E-mail
-        const email = document.getElementById("email");
-        if (!validateEmail(email.value.trim())) {
-            showError(email, "Por favor, insira um e-mail válido.");
-            isValid = false;
-        }
-
-        // Validação da Senha
-        const password = document.getElementById("password");
-        if (password.value.length < 6) {
-            showError(password, "A senha deve ter pelo menos 6 caracteres.");
-            isValid = false;
-        }
-
-        // Validação da Confirmação de Senha
-        const confirmPassword = document.getElementById("confirm-password");
-        if (confirmPassword.value !== password.value) {
-            showError(confirmPassword, "As senhas não correspondem.");
-            isValid = false;
-        }
-
-        // Validação do Telefone
-        const phone = document.getElementById("phone");
-        const phonePattern = /^[0-9]{10,11}$/; // Aceita telefones com 10 ou 11 dígitos
-        if (!phonePattern.test(phone.value.trim())) {
-            showError(phone, "Por favor, insira um telefone válido com 10 ou 11 dígitos.");
-            isValid = false;
-        }
-
-        // Validação do CEP
-        const zip = document.getElementById("zip");
-        const zipPattern = /^[0-9]{8}$/; // Aceita apenas CEPs com 8 dígitos
-        if (!zipPattern.test(zip.value.trim())) {
-            showError(zip, "Por favor, insira um CEP válido com 8 dígitos.");
+        const courses = document.querySelectorAll('input[name="course"]:checked');
+        if (courses.length === 0) {
+            alert('Por favor, selecione pelo menos um curso.');
             isValid = false;
         }
 
         return isValid;
     }
 
+    function validateField(field, errorMessage) {
+        if (field.value.trim() === "") {
+            showError(field, errorMessage);
+            return false;
+        } else {
+            clearError(field);
+            return true;
+        }
+    }
+
+    function validateEmailField(field) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(field.value.trim())) {
+            showError(field, "Por favor, insira um e-mail válido.");
+            return false;
+        } else {
+            clearError(field);
+            return true;
+        }
+    }
+
+    function validatePasswordField(field) {
+        if (field.value.length < 6) {
+            showError(field, "A senha deve ter pelo menos 6 caracteres.");
+            return false;
+        } else {
+            clearError(field);
+            return true;
+        }
+    }
+
+    function validateConfirmPasswordField(confirmField, passwordField) {
+        if (confirmField.value !== passwordField.value) {
+            showError(confirmField, "As senhas não correspondem.");
+            return false;
+        } else {
+            clearError(confirmField);
+            return true;
+        }
+    }
+
+    function validatePhoneField(field) {
+        const phonePattern = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+        if (!phonePattern.test(field.value.trim())) {
+            showError(field, "Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
+            return false;
+        } else {
+            clearError(field);
+            return true;
+        }
+    }
+
+    function validateZipField(field) {
+        const zipPattern = /^\d{5}-\d{3}$/;
+        if (!zipPattern.test(field.value.trim())) {
+            showError(field, "Por favor, insira um CEP válido no formato XXXXX-XXX.");
+            return false;
+        } else {
+            clearError(field);
+            return true;
+        }
+    }
+
     function showError(input, message) {
+        clearError(input);
         const error = document.createElement("div");
         error.className = "error-message";
         error.textContent = message;
         input.classList.add("error");
         input.parentNode.appendChild(error);
+    }
+
+    function clearError(input) {
+        const error = input.parentNode.querySelector(".error-message");
+        if (error) {
+            error.remove();
+        }
+        input.classList.remove("error");
     }
 
     function clearErrors() {
@@ -86,9 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const errorInputs = document.querySelectorAll(".error");
         errorInputs.forEach((input) => input.classList.remove("error"));
     }
+});
 
-    function validateEmail(email) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailPattern.test(email);
-    }
+document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
 });
