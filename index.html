@@ -7,9 +7,11 @@
     <title>Formulário de Cadastro</title>
 </head>
 <body>
-    <div class="header">
+    <header>
         <img src="logo.png" alt="UNISUAM Logo" class="logo">
-    </div>
+        <button id="dark-mode-toggle">Modo Escuro</button>
+    </header>
+    
     <div class="container">
         <h1>Formulário de Cadastro</h1>
 
@@ -19,30 +21,25 @@
             <form id="registration-form">
                 <div class="input-group">
                     <div>
-                        <label for="first-name">Nome:</label>
-                        <input type="text" id="first-name" name="first-name" required>
+                        <input type="text" id="first-name" name="first-name" placeholder="Nome" required>
                     </div>
 
                     <div>
-                        <label for="last-name">Sobrenome:</label>
-                        <input type="text" id="last-name" name="last-name" required>
+                        <input type="text" id="last-name" name="last-name" placeholder="Sobrenome" required>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <div>
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="E-mail" required>
                     </div>
 
                     <div>
-                        <label for="password">Senha:</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" placeholder="Senha" required>
                     </div>
 
                     <div>
-                        <label for="confirm-password">Confirmação de Senha:</label>
-                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmação de Senha" required>
                     </div>
                 </div>
         </section>
@@ -52,28 +49,23 @@
             <h2>Informações de Contato</h2>
             <div class="input-group">
                 <div>
-                    <label for="phone">Telefone:</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Telefone" required>
                 </div>
 
                 <div>
-                    <label for="address">Endereço:</label>
-                    <input type="text" id="address" name="address" required>
+                    <input type="text" id="address" name="address" placeholder="Endereço" required>
                 </div>
 
                 <div>
-                    <label for="city">Cidade:</label>
-                    <input type="text" id="city" name="city" required>
+                    <input type="text" id="city" name="city" placeholder="Cidade" required>
                 </div>
 
                 <div>
-                    <label for="state">Estado:</label>
-                    <input type="text" id="state" name="state" required>
+                    <input type="text" id="state" name="state" placeholder="Estado" required>
                 </div>
 
                 <div>
-                    <label for="zip">CEP:</label>
-                    <input type="text" id="zip" name="zip" required>
+                    <input type="text" id="zip" name="zip" placeholder="CEP" required>
                 </div>
             </div>
         </section>
@@ -100,7 +92,6 @@
                 </div>
 
                 <div>
-                    <label for="semester">Semestre de Ingresso:</label>
                     <select id="semester" name="semester">
                         <option value="1">1º Semestre</option>
                         <option value="2">2º Semestre</option>
@@ -114,23 +105,19 @@
             <h2>Experiência Profissional</h2>
             <div class="input-group">
                 <div>
-                    <label for="company">Empresa:</label>
-                    <input type="text" id="company" name="company">
+                    <input type="text" id="company" name="company" placeholder="Empresa">
                 </div>
 
                 <div>
-                    <label for="position">Cargo:</label>
-                    <input type="text" id="position" name="position">
+                    <input type="text" id="position" name="position" placeholder="Cargo">
                 </div>
 
                 <div>
-                    <label for="start-date">Data de Início:</label>
-                    <input type="date" id="start-date" name="start-date">
+                    <input type="date" id="start-date" name="start-date" placeholder="Data de Início">
                 </div>
 
                 <div>
-                    <label for="end-date">Data de Término:</label>
-                    <input type="date" id="end-date" name="end-date">
+                    <input type="date" id="end-date" name="end-date" placeholder="Data de Término">
                 </div>
             </div>
         </section>
